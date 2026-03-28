@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NASA SE Handbook — QA System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@200;300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <!-- SCANLINE OVERLAY -->
+    <div class="scanlines"></div>
+
+    <!-- GRID BACKGROUND -->
+    <div class="grid-bg"></div>
+
+    <!-- ══ HEADER ══════════════════════════════════════════════ -->
+    <header class="header">
+      <div class="header-left">
+        <!-- MOBILE: Left panel toggle -->
+        <button
+          class="btn-panel-toggle"
+          id="btn-toggle-left"
+          onclick="togglePanel('left')"
+          aria-label="Toggle mission info panel"
+        >
+          ☰
+        </button>
+
+        <div class="nasa-logo">
+          <div class="logo-circle">
+            <span>NASA</span>
+          </div>
+        </div>
+        <div class="header-titles">
+          <h1 class="system-title">SYSTEMS ENGINEERING HANDBOOK</h1>
+          <p class="system-sub">
+            SP-2016-6105 Rev2 · Intelligent QA Interface · i2e AI Labs
+          </p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="status-panel">
+          <div class="status-item" id="status-index">
+            <span class="status-dot" id="dot-index"></span>
+            <span class="status-label">INDEX</span>
+            <span class="status-value" id="val-index">CHECKING</span>
+          </div>
+          <div class="status-item" id="status-model">
+            <span class="status-dot" id="dot-model"></span>
+            <span class="status-label">MODEL</span>
+            <span class="status-value" id="val-model">CHECKING</span>
+          </div>
+          <div class="status-item">
+            <span class="status-dot dot-active"></span>
+            <span class="status-label">CHUNKS</span>
+            <span class="status-value" id="val-chunks">—</span>
+          </div>
+        </div>
+
+        <!-- MOBILE: Right panel toggle -->
+        <button
+          class="btn-panel-toggle"
+          id="btn-toggle-right"
+          onclick="togglePanel('right')"
+          aria-label="Toggle sources panel"
+        >
+          ⊞
+        </button>
+
+        <button class="btn-exit" id="btn-exit" onclick="exitSystem()">
+          <span class="exit-icon">⏻</span>
+          <span>SHUTDOWN</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ══ MAIN LAYOUT ══════════════════════════════════════════ -->
+    <main class="main-layout">
+      <!-- LEFT PANEL — MISSION INFO + SAMPLE QUERIES -->
+      <aside class="left-panel" id="left-panel">
+        <div class="panel-block">
+          <div class="panel-label">MISSION PARAMETERS</div>
+          <div class="param-list">
+            <div class="param-row">
+              <span class="param-key">DOCUMENT</span>
+              <span class="param-val">NASA SE HANDBOOK</span>
+            </div>
+            <div class="param-row">
+              <span class="param-key">PAGES</span>
+              <span class="param-val">270</span>
+            </div>
+            <div class="param-row">
+              <span class="param-key">CHAPTERS</span>
+              <span class="param-val">17 + APPENDICES</span>
+            </div>
+            <div class="param-row">
+              <span class="param-key">ENGINE</span>
+              <span class="param-val">LLAMA-3.3-70B</span>
+            </div>
+            <div class="param-row">
+              <span class="param-key">EMBEDDINGS</span>
+              <span class="param-val">MiniLM-L6-v2</span>
+            </div>
+            <div class="param-row">
+              <span class="param-key">VECTOR DB</span>
+              <span class="param-val">FAISS LOCAL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-block">
+          <div class="panel-label">SAMPLE QUERIES</div>
+          <div class="sample-queries">
+            <button
+              class="sample-btn"
+              onclick="injectQuery('What is the Systems Engineering ?')"
+            >
+              What is the Vee Model?
+            </button>
+            <button
+              class="sample-btn"
+              onclick="
+                injectQuery(
+                  'What are the entry criteria for a Preliminary Design Review (PDR)?',
+                )
+              "
+            >
+              PDR entry criteria?
+            </button>
+            <button
+              class="sample-btn"
+              onclick="
+                injectQuery(
+                  'Explain the difference between verification and validation.',
+                )
+              "
+            >
+              Verification vs Validation?
+            </button>
+            <button
+              class="sample-btn"
+              onclick="
+                injectQuery(
+                  'What is Technology Readiness Level (TRL) and how is it measured?',
+                )
+              "
+            >
+              What is TRL?
+            </button>
+            <button
+              class="sample-btn"
+              onclick="
+                injectQuery(
+                  'What does a Systems Engineer do during the concept development phase?',
+                )
+              "
+            >
+              Concept development phase?
+            </button>
+            <button
+              class="sample-btn"
+              onclick="
+                injectQuery(
+                  'What are Key Decision Points (KDP) in the project lifecycle?',
+                )
+              "
+            >
+              Key Decision Points?
+            </button>
+            <button
+              class="sample-btn"
+              onclick="
+                injectQuery(
+                  'How does risk management integrate with technical reviews?',
+                )
+              "
+            >
+              Risk management process?
+            </button>
+            <button
+              class="sample-btn"
+              onclick="
+                injectQuery(
+                  'What should a System Requirements Review (SRR) include?',
+                )
+              "
+            >
+              SRR requirements?
+            </button>
+          </div>
+        </div>
+
+        <div class="panel-block">
+          <div class="panel-label">SESSION STATS</div>
+          <div class="param-list">
+            <div class="param-row">
+              <span class="param-key">QUERIES</span>
+              <span class="param-val" id="stat-queries">0</span>
+            </div>
+            <div class="param-row">
+              <span class="param-key">AVG TIME</span>
+              <span class="param-val" id="stat-avgtime">—</span>
+            </div>
+            <div class="param-row">
+              <span class="param-key">AVG CONF</span>
+              <span class="param-val" id="stat-avgconf">—</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- CENTER — CHAT WINDOW -->
+      <section class="chat-section">
+        <div class="chat-header">
+          <span class="chat-header-title">QUERY TERMINAL</span>
+          <button class="btn-clear" onclick="clearHistory()">
+            <span>⟳</span> CLEAR HISTORY
+          </button>
+        </div>
+
+        <!-- MESSAGES -->
+        <div class="chat-messages" id="chat-messages">
+          <!-- WELCOME MESSAGE -->
+          <div class="message system-message">
+            <div class="message-icon">⬡</div>
+            <div class="message-body">
+              <div class="message-meta">SYSTEM INITIALISED</div>
+              <div class="message-text">
+                NASA Systems Engineering Handbook QA system online.<br />
+                Knowledge base loaded. Ask any question about systems
+                engineering processes, lifecycle phases, technical reviews, or
+                methodologies described in SP-2016-6105 Rev2.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INPUT AREA -->
+        <div class="chat-input-area">
+          <div class="input-wrapper">
+            <span class="input-prefix">▶</span>
+            <!-- FIX 1: oninput now calls handleInput (not just autoResize)
+                 FIX 2: maxlength added as belt-and-suspenders on top of JS cap -->
+            <textarea
+              id="question-input"
+              class="question-input"
+              placeholder="Enter your query about the NASA SE Handbook..."
+              rows="1"
+              maxlength="1000"
+              onkeydown="handleKeyDown(event)"
+              oninput="handleInput(this)"
+            ></textarea>
+            <button class="btn-send" id="btn-send" onclick="sendQuestion()">
+              TRANSMIT
+            </button>
+          </div>
+          <!-- FIX 3: input-footer with char counter now exists in HTML -->
+          <div class="input-footer">
+            <div class="input-hint">
+              ENTER to send · SHIFT+ENTER for new line
+            </div>
+            <span class="char-counter" id="char-counter">0 / 1000</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL — SOURCES -->
+      <aside class="right-panel" id="right-panel">
+        <div class="panel-label">RETRIEVED SOURCES</div>
+        <div id="sources-panel">
+          <div class="no-sources">
+            Sources will appear here after your first query.
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- FIX 4: Panel backdrop for mobile overlay (was referenced in JS/CSS but missing from HTML) -->
+    <div
+      class="panel-backdrop"
+      id="panel-backdrop"
+      onclick="closeAllPanels()"
+    ></div>
+
+    <!-- ══ EXIT CONFIRMATION MODAL ══════════════════════════════ -->
+    <div class="modal-overlay" id="exit-modal">
+      <div class="modal-box">
+        <div class="modal-icon">⚠</div>
+        <div class="modal-title">CONFIRM SHUTDOWN</div>
+        <div class="modal-text">
+          This will terminate the server process.<br />
+          All session data will be cleared.
+        </div>
+        <div class="modal-actions">
+          <button class="btn-modal-cancel" onclick="closeExitModal()">
+            ABORT
+          </button>
+          <button class="btn-modal-confirm" onclick="confirmExit()">
+            CONFIRM SHUTDOWN
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
