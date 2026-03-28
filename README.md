@@ -340,28 +340,6 @@ Pass 1 gets directly relevant chunks. Pass 2 scans those chunks for cross-refere
 
 ---
 
-## 💬 Evaluator Q&A — Expected Questions
-
-**Q: What if I ask something not in the handbook?**
-The system prompt instructs the LLM to respond with *"This information was not found in the retrieved sections."* The confidence score will be LOW (<50%) and visible in the UI.
-
-**Q: Why do sources sometimes seem unrelated to the query?**
-In v1 this was a real bug — fixed in v2 with FETCH_K=15 + section deduplication. If it still occurs, the answer lives in a section with different vocabulary than the query. Fix: hybrid BM25+dense retrieval.
-
-**Q: What happens if the PDF changes?**
-Hit `POST /ingest`. The pipeline re-reads the PDF, rebuilds chunks, re-embeds, and hot-reloads the FAISS index. Server restart not required.
-
-**Q: Why not use LangChain's built-in RAG chain?**
-LangChain's default RAG doesn't handle section deduplication, acronym expansion, or hierarchical metadata. The custom pipeline gives full control over every step and makes every design decision explicit and auditable.
-
-**Q: Your confidence score is 68% — is that good or bad?**
-68% is MEDIUM. The top chunk has strong relevance (~0.7 cosine similarity) but the answer is synthesised across sections. Above 75% = HIGH (directly from one section). Below 50% = LOW (loosely related sections, verify in source).
-
-**Q: Why FAISS and not Pinecone/Weaviate?**
-Local execution requirement. FAISS runs in-process, zero network latency, no API key needed by the evaluator. For 885 chunks, search is under 5ms.
-
----
-
 ## 👤 About the Author
 
 <div align="center">
