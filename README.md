@@ -164,8 +164,7 @@ Problem_2_Technical_Manual_QA/
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/Ajaysomala/nasa-se-handbook-qa
-cd nasa-se-handbook-qa
+git clone https://github.com/Ajaysomala/i2e_Hireathon-Complex_Technical_Manual_QA_System
 pip install -r requirements.txt
 ```
 
@@ -349,7 +348,7 @@ Python Developer · AI/ML Engineer · Data Scientist
 
 📍 Hyderabad, Telangana, India
 🔗 GitHub: [github.com/Ajaysomala](https://github.com/Ajaysomala)
-🌐 Portfolio: [commander-portfolio.pages.dev](https://commander-portfolio.pages.dev)
+🌐 Portfolio: https://ajaysomala.github.io
 ✉️ [ajaysomala@gmail.com](mailto:ajaysomala@gmail.com)
 
 <br/>
