@@ -205,7 +205,7 @@ This is a local demo project built for i2e Hireathon 2026. It is not intended fo
 
 If you find a security issue for educational purposes, feel free to open an issue or contact:
 
-**Somala Ajay** — ajaysomala@gmail.com
+**Somala Ajay** — jaydeveloper010@gmail.com
 
 ---
 
